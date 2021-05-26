@@ -32,31 +32,42 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        .header {
-            min-height: 230px;
-            background-image: url('{{ asset('images/pattern-bg.png') }}');
+        .main-content {
+            border-radius: 8px;
+            box-shadow: 3px 3px 8px #a5a5a5;
+            height: 500px;
+            margin-top: 30px;
+            width: 100%;
         }
 
-        .header h1 {
+        #map {
+            border-radius: 8px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .container h1 {
+            color: #3498db;
             font-weight: 700;
+            padding-top: 10px;
         }
 
-        .content-map {
-            height: calc(100vh - 230px);
-            padding: 2px;
-            background: #ccc;
+        .footer {
+            color: #3498db;
+            padding-top: 10px;
         }
     </style>
 </head>
 
 <body>
-    <div class="header d-flex justify-content-center align-items-center">
-        <div class="container text-center text-white">
-            <h1>Web GIS List Jobs</h1>
+    <div class="container">
+        <h1 class="text-center">Job Geographic Information System</h1>
+        <div class="main-content">
+            <div id="map"></div>
         </div>
-    </div>
-    <div class="content-map">
-        <div id="map" style="width: 100%; height: 100%;"></div>
+        <div class="footer text-center">
+            Copyright &copy; {{ date('Y') }} - Job GIS System
+        </div>
     </div>
 </body>
 
