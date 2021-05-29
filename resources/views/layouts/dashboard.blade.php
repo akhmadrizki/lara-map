@@ -106,7 +106,14 @@
             <li>
               <a class="nav-link" href="#">
                 <i class="fas fa-file-contract"></i>
-                <span>List Peminjaman</span>
+                <span>Kecamatan</span>
+              </a>
+            </li>
+
+            <li class="{{ Request::route()->getName() == 'index.job' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('index.job') }}">
+                <i class="fas fa-briefcase"></i>
+                <span>Jobs</span>
               </a>
             </li>
           </ul>
