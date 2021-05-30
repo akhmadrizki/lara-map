@@ -92,10 +92,10 @@
     var markers = L.markerClusterGroup();
     let getData = async ()  => {
         let response = await fetch('http://localhost:8000/api/job');
-        let json = await response.json()
+        let json = await response.json();
         
         json.forEach(value => {
-            var lokasi = L.marker([value.latitude, value.longitude]).bindPopup(`<b>${value.title}</b> <br><a href="http://localhost:8000/dashboard/list-job">test</a>`);
+            var lokasi = L.marker([value.latitude, value.longitude]).bindPopup(`<b>${value.title}</b> <br><a href="http://localhost:8000/job-detail/${value.id}">Lihat Detail</a>`);
                 
                 markers.addLayer(lokasi);
                 map.addLayer(markers);

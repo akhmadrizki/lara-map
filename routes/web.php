@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+// Route::get('/a', function () {
+//     return view('interfaces.detail.index');
 // });
 
 Route::get('/', [LandingController::class, 'index'])->name('index');
+
+Route::get('/job-detail/{id}', [LandingController::class, 'jobDetail'])->name('job.detail');
 
 Route::get('/admin', [LoginController::class, 'index'])->name('admin');
 
@@ -53,7 +55,5 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/list-job/delete/{id}', [JobController::class, 'destroy'])->name('delete.job');
     });
 });
-
-// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

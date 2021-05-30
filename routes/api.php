@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('job', [JobController::class, 'index']);
+Route::get('job-detail/{id}', [JobController::class, 'jobDetail']);

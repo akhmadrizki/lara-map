@@ -27,6 +27,11 @@
           @csrf
           <div class="card-body">
 
+            <div class="form-group">
+              <label>Gambar</label>
+              <input type="file" class="form-control" name="image" id="image">
+            </div>
+
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="company">Nama Perusahaan</label>
@@ -38,15 +43,18 @@
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="description">Deskripsi</label>
-                <textarea name="description" id="description" class="form-control">{{ $jobs->description }}</textarea>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="address">Alamat</label>
+            <div class="form-group">
+              <label for="address" class="col-xs-12">Alamat</label>
+              <div class="col-xs-12">
                 <input type="text" class="form-control" value="{{ $jobs->address }}" id="address" name="address" required>
               </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="description" class="col-xs-12">Deskripsi</label>
+                <div class="col-xs-12">
+                  <textarea class="form-control" id="description" rows="3" name="description">{!!$jobs->description!!}</textarea>
+                </div>
             </div>
 
             <div class="form-row">
@@ -59,11 +67,6 @@
                 <input type="text" class="form-control" value="{{ $jobs->longitude }}" id="longitude" name="longitude" required>
               </div>
             </div>
-
-            <div class="form-group">
-              <label>Gambar</label>
-              <input type="file" class="form-control" name="image" id="image">
-            </div>
           </div>
 
           <div class="card-footer text-left">
@@ -74,4 +77,14 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('modals')
+<script>
+  ClassicEditor
+      .create( document.querySelector( '#description' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+</script>
 @endsection

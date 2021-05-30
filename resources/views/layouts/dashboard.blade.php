@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="{{ asset('stisla/css/style.css')}}">
   <link rel="stylesheet" href="{{ asset('stisla/css/components.css')}}">
 
+  <script src="{{ asset('js/ckeditor.js') }}"></script>
   <style>
     .navbar-bg {
       background-color: #032038 !important;

@@ -12,4 +12,10 @@ class LandingController extends Controller
         $jobs = Joblist::all();
         return view('welcome')->withjobs($jobs);
     }
+
+    public function jobDetail($id)
+    {
+        $jobs = Joblist::find($id);
+        return view('interfaces.detail.index')->withJobs($jobs);
+    }
 }

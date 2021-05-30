@@ -14,4 +14,14 @@ class JobController extends Controller
 
         return response()->json($jobs);
     }
+
+    public function jobDetail($id)
+    {
+        $jobs = Joblist::select('id', 'company', 'latitude', 'longitude')
+        ->where('id', $id)
+        ->get();
+
+        return response()->json($jobs);
+
+    }
 }
