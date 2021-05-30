@@ -25,6 +25,11 @@
         crossorigin=""></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
+    <!-- cluster -->
+    <link rel="stylesheet" href="{{ asset('cluster/MarkerCluster.css') }}" />
+	<link rel="stylesheet" href="{{ asset('cluster/MarkerCluster.Default.css')}}" />
+	<script src="{{ asset('cluster/leaflet.markercluster-src.js')}}"></script>
+
     <!-- Styles -->
     <style>
         * {
@@ -84,12 +89,17 @@
     id: 'mapbox/streets-v11'
     }).addTo(map);
 
+    var markers = L.markerClusterGroup();
     let getData = async ()  => {
         let response = await fetch('http://localhost:8000/api/job');
         let json = await response.json()
         
         json.forEach(value => {
-            L.marker([value.latitude, value.longitude]).bindPopup(`<b>${value.title}</b>`).addTo(map);
+            var lokasi = L.marker([value.latitude, value.longitude]).bindPopup(`<b>${value.title}</b> <br><a href="http://localhost:8000/dashboard/list-job">test</a>`);
+                
+                markers.addLayer(lokasi);
+                map.addLayer(markers);
+                map.fitBounds(markers.getBounds());
         });
     }
     getData();

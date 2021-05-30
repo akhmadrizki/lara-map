@@ -52,6 +52,42 @@ class JobController extends Controller
         return redirect()->route('index.job')->with('success', 'Job berhasil ditambahkan');
     }
 
+    public function edit($id)
+    {
+        $jobs = Joblist::find($id);
+        return view('interfaces.dashboard.edit-job')->withJobs($jobs);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $jobs = Joblist::find($id);
+
+        // validate
+        $this->validate($request, [
+            'image'  => 'mimes:jpg,png,jpeg|max:5000'
+        ]);
+
+        $fields = [
+            'title'       => $request->title,
+            'company'     => $request->company,
+            'description' => $request->description,
+            'address'     => $request->address,
+            'latitude'    => $request->latitude,
+            'longitude'   => $request->longitude,
+        ];
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->save($location);
+            $fields['image'] = $filename;
+        }
+
+        $jobs->update($fields);
+        return redirect()->route('index.job')->with('success', 'Job berhasil diubah');
+    }
+
     public function destroy($id)
     {
         $jobs = Joblist::find($id);

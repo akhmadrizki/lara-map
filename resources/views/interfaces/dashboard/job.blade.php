@@ -55,7 +55,7 @@
                     <td>{{ $job->company }}</td>
                     <td>{{ $job->title }}</td>
                     <td>
-                      <a href="#" class="btn-sm btn-warning"><i class="far fa-edit"></i></a>
+                      <a href="{{ route('edit.job', $job->id) }}" class="btn-sm btn-warning"><i class="far fa-edit"></i></a>
                       <button class="btn btn-sm btn-danger" data-toggle="modal"
                       data-target="#delete-modal{{ $job->id }}"><i class="far fa-trash-alt"></i></button>
                     </td>
