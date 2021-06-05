@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update-job/{id}', [JobController::class, 'update'])->name('update.job');
         Route::post('/add-job', [JobController::class, 'store']);
         Route::delete('/list-job/delete/{id}', [JobController::class, 'destroy'])->name('delete.job');
+
+        Route::get('/list-kecamatan', [KecamatanController::class, 'index'])->name('index.kecamatan');
+        Route::get('/add-kecamatan', [KecamatanController::class, 'add'])->name('add.kecamatan');
+        Route::post('/add-kecamatan', [KecamatanController::class, 'store']);
+        Route::get('/edit-kecamatan/{id}', [KecamatanController::class, 'edit'])->name('edit.kecamatan');
+        Route::post('/update-kecamatan/{id}', [KecamatanController::class, 'update'])->name('update.kecamatan');
+        Route::delete('/list-kecamatan/delete/{id}', [KecamatanController::class, 'destroy'])->name('delete.kecamatan');
     });
 });
 

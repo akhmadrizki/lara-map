@@ -104,8 +104,8 @@
               </a>
             </li>
 
-            <li>
-              <a class="nav-link" href="#">
+            <li class="{{ Request::route()->getName() == 'index.kecamatan' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('index.kecamatan') }}">
                 <i class="fas fa-file-contract"></i>
                 <span>Kecamatan</span>
               </a>

@@ -16,7 +16,7 @@
 @section('content')
 
 <div class="section-header">
-  <h1>List Loker</h1>
+  <h1>List Kecamatan</h1>
 </div>
 
 <div class="section-body">
@@ -34,8 +34,9 @@
       @endif
       <div class="card">
         <div class="card-header">
-          <h4>Tambah Loker</h4>
-          <a href="{{ route('add.job') }}" class="button-add btn btn-primary"><i class="fas fa-plus-circle"></i></a>
+          <h4>Tambah Kecamatan</h4>
+          <a href="{{ route('add.kecamatan') }}" class="button-add btn btn-primary"><i
+              class="fas fa-plus-circle"></i></a>
         </div>
         <div class="card-body p-0">
           <div class="table-responsive">
@@ -43,22 +44,20 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Company</th>
-                  <th>Lowongan</th>
+                  <th>Nama Kecamatan</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($jobs as $job)
+                @foreach ($kecamatans as $kecamatan)
                 <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $job->company }}</td>
-                  <td>{{ $job->title }}</td>
+                  <td>{{ $kecamatan->nama_kecamatan }}</td>
                   <td>
-                    <a href="{{ route('edit.job', $job->id) }}" class="btn-sm btn-warning"><i
+                    <a href="{{ route('edit.kecamatan', $kecamatan->id) }}" class="btn-sm btn-warning"><i
                         class="far fa-edit"></i></a>
                     <button class="btn btn-sm btn-danger" data-toggle="modal"
-                      data-target="#delete-modal{{ $job->id }}"><i class="far fa-trash-alt"></i></button>
+                      data-target="#delete-modal{{ $kecamatan->id }}"><i class="far fa-trash-alt"></i></button>
                   </td>
                 </tr>
                 @endforeach
@@ -93,21 +92,21 @@
 
 @section('modals')
 
-@foreach($jobs as $job)
-<div class="modal fade" id="delete-modal{{ $job->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+@foreach($kecamatans as $kecamatan)
+<div class="modal fade" id="delete-modal{{ $kecamatan->id }}" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Hapus Loker</h5>
+        <h5 class="modal-title">Hapus Kecamatan</h5>
       </div>
       <div class="modal-body">
-        <div>Yakinkah dirimu menghapus <span class="font-weight-bold">{{ $job->title }}</span>
+        <div>Yakinkah dirimu menghapus <span class="font-weight-bold">{{ $kecamatan->nama_kecamatan }}</span>
           ini? 🥺
         </div>
       </div>
       <div class="modal-footer bg-whitesmoke">
         <button class="btn btn-light" data-dismiss="modal">Tidak</button>
-        <form action="{{ route('delete.job', ['id' => $job->id]) }}" method="POST">
+        <form action="{{ route('delete.kecamatan', ['id' => $kecamatan->id]) }}" method="POST">
           @method('DELETE')
           @csrf
           <button type="submit" class="btn btn-danger">Ya, hapus</button>
