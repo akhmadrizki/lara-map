@@ -22,6 +22,7 @@ class CreateJoblistsTable extends Migration
             $table->string('address');
             $table->string('latitude');
             $table->string('longitude');
+            $table->unsignedInteger('kecamatan_id');
             $table->timestamps();
         });
     }

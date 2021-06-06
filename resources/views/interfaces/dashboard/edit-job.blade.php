@@ -35,7 +35,8 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="company">Nama Perusahaan</label>
-                <input type="text" class="form-control" value="{{ $jobs->company }}" id="company" name="company" required>
+                <input type="text" class="form-control" value="{{ $jobs->company }}" id="company" name="company"
+                  required>
               </div>
               <div class="form-group col-md-6">
                 <label for="title">Loker</label>
@@ -43,28 +44,42 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="address" class="col-xs-12">Alamat</label>
-              <div class="col-xs-12">
-                <input type="text" class="form-control" value="{{ $jobs->address }}" id="address" name="address" required>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="address">Alamat</label>
+                <input type="text" class="form-control" value="{{ $jobs->address }}" id="address" name="address"
+                  required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="kecamatan_id">Kecamatan</label>
+                <select name="kecamatan_id" id="kecamatan_id" class="custom-select">
+                  <option value="none" disabled selected>- Pilih Kecamatan -</option>
+                  @foreach($kecamatans as $kecamatan)
+                  <option value="{{ $kecamatan->id }}" {{ $kecamatan->id == $jobs->kecamatan_id ? 'selected' : '' }}>
+                    {{ $kecamatan->nama_kecamatan }}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
-            
+
             <div class="form-group">
               <label for="description" class="col-xs-12">Deskripsi</label>
-                <div class="col-xs-12">
-                  <textarea class="form-control" id="description" rows="3" name="description">{!!$jobs->description!!}</textarea>
-                </div>
+              <div class="col-xs-12">
+                <textarea class="form-control" id="description" rows="3"
+                  name="description">{!!$jobs->description!!}</textarea>
+              </div>
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="latitude">Latitude</label>
-                <input type="text" class="form-control" value="{{ $jobs->latitude }}" id="latitude" name="latitude" required>
+                <input type="text" class="form-control" value="{{ $jobs->latitude }}" id="latitude" name="latitude"
+                  required>
               </div>
               <div class="form-group col-md-6">
                 <label for="longitude">Longitude</label>
-                <input type="text" class="form-control" value="{{ $jobs->longitude }}" id="longitude" name="longitude" required>
+                <input type="text" class="form-control" value="{{ $jobs->longitude }}" id="longitude" name="longitude"
+                  required>
               </div>
             </div>
           </div>

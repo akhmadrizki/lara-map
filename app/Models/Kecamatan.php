@@ -11,4 +11,9 @@ class Kecamatan extends Model
 
     protected $table = 'kecamatans';
     protected $fillable = ['nama_kecamatan'];
+
+    public function joblists()
+    {
+        return $this->hasMany(Joblist::class);
+    }
 }

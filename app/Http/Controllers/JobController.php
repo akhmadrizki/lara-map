@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Joblist;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Image;
 
@@ -21,7 +22,8 @@ class JobController extends Controller
 
     public function add()
     {
-        return view('interfaces.dashboard.add-job');
+        $kecamatans = Kecamatan::all();
+        return view('interfaces.dashboard.add-job')->withKecamatans($kecamatans);
     }
 
     public function store(Request $request)
@@ -32,12 +34,13 @@ class JobController extends Controller
         ]);
 
         $fields = [
-            'title'       => $request->title,
-            'company'     => $request->company,
-            'description' => $request->description,
-            'address'     => $request->address,
-            'latitude'    => $request->latitude,
-            'longitude'   => $request->longitude,
+            'title'        => $request->title,
+            'company'      => $request->company,
+            'description'  => $request->description,
+            'address'      => $request->address,
+            'latitude'     => $request->latitude,
+            'longitude'    => $request->longitude,
+            'kecamatan_id' => $request->kecamatan_id,
         ];
 
         if ($request->hasFile('image')) {
@@ -54,8 +57,12 @@ class JobController extends Controller
 
     public function edit($id)
     {
-        $jobs = Joblist::find($id);
-        return view('interfaces.dashboard.edit-job')->withJobs($jobs);
+        $jobs       = Joblist::find($id);
+        $kecamatans = Kecamatan::all();
+
+        return view('interfaces.dashboard.edit-job')
+            ->withJobs($jobs)
+            ->withKecamatans($kecamatans);
     }
 
     public function update(Request $request, $id)
@@ -68,12 +75,13 @@ class JobController extends Controller
         ]);
 
         $fields = [
-            'title'       => $request->title,
-            'company'     => $request->company,
-            'description' => $request->description,
-            'address'     => $request->address,
-            'latitude'    => $request->latitude,
-            'longitude'   => $request->longitude,
+            'title'        => $request->title,
+            'company'      => $request->company,
+            'description'  => $request->description,
+            'address'      => $request->address,
+            'latitude'     => $request->latitude,
+            'longitude'    => $request->longitude,
+            'kecamatan_id' => $request->kecamatan_id,
         ];
 
         if ($request->hasFile('image')) {

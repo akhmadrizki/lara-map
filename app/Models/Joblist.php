@@ -18,5 +18,11 @@ class Joblist extends Model
         'address',
         'latitude',
         'longitude',
+        'kecamatan_id',
     ];
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
+    }
 }
