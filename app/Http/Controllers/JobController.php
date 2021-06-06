@@ -51,7 +51,15 @@ class JobController extends Controller
             $fields['image'] = $filename;
         }
 
-        Joblist::create($fields);
+        $job = Joblist::create($fields);
+        $kecamatans = Kecamatan::where('id', $job->kecamatan_id)->first();
+
+        $updateField = [
+            'jumlah_job' => $kecamatans->jumlah_job + 1
+        ];
+
+        $kecamatans->update($updateField);
+
         return redirect()->route('index.job')->with('success', 'Job berhasil ditambahkan');
     }
 

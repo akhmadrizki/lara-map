@@ -6,6 +6,10 @@
   .hero {
     background-color: #032038 !important;
   }
+
+  .bg-card {
+    background-color: #1ecad3;
+  }
 </style>
 
 @endsection
@@ -13,28 +17,27 @@
 @section('content')
 
 <div class="section-header">
-  <h1>Dashboard</h1>
+  <h1>Selamat Datang, {{ Auth::user()->name }}!</h1>
 </div>
 
-<div class="section-body">
-  <div class="row">
-    <div class="col-12 mb-4">
-      <div class="hero bg-primary text-white">
-        <div class="hero-inner">
-          <h2>Selamat Datang, {{ Auth::user()->name }}!</h2>
-          <p class="lead">
-            Mie tek-tek kenangan Campur bayam dan kemangi <br>
-            Yuk cek apakah ada Ruangan yang dipinjam hari ini
-          </p>
-          <div class="mt-4">
-            <a href="#" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="fas fa-file-contract"></i>
-              List Booked
-            </a>
-          </div>
+<div class="row">
+  @foreach ($kecamatans as $kecamatan)
+  <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="card card-statistic-1">
+      <div class="card-icon bg-card">
+        <i class="fas fa-briefcase"></i>
+      </div>
+      <div class="card-wrap">
+        <div class="card-header">
+          <h4>Total Job di <b>{{ $kecamatan->nama_kecamatan }}</b></h4>
+        </div>
+        <div class="card-body">
+          {{ $kecamatan->jumlah_job }}
         </div>
       </div>
     </div>
   </div>
+  @endforeach
 </div>
 
 @endsection

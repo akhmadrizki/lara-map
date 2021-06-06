@@ -27,8 +27,8 @@
 
     <!-- cluster -->
     <link rel="stylesheet" href="{{ asset('cluster/MarkerCluster.css') }}" />
-	<link rel="stylesheet" href="{{ asset('cluster/MarkerCluster.Default.css')}}" />
-	<script src="{{ asset('cluster/leaflet.markercluster-src.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('cluster/MarkerCluster.Default.css')}}" />
+    <script src="{{ asset('cluster/leaflet.markercluster-src.js')}}"></script>
 
     <!-- Styles -->
     <style>
@@ -70,12 +70,36 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center">Job Geographic Information System</h1>
-        <div class="main-content">
-            <div id="map"></div>
+        <h1 class="text-center">Alihgae - Job Geographic Information System</h1>
+        <div class="row">
+            <div class="col-8">
+                <div class="main-content">
+                    <div id="map"></div>
+                </div>
+            </div>
+            <div class="col-2">
+                <table class="table mt-3 table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama Kecamatan</th>
+                            <th scope="col">Jumlah Kerjaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($kecamatans as $kecamatan)
+                        <tr>
+                            <th>{{ $loop->iteration }}</th>
+                            <td>{{ $kecamatan->nama_kecamatan }}</td>
+                            <td>{{ $kecamatan->jumlah_job }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="footer text-center">
-            Copyright &copy; {{ date('Y') }} - Job GIS System
+            Copyright &copy; {{ date('Y') }} - Alihgae - Job GIS System
         </div>
     </div>
 </body>

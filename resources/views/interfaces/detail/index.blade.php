@@ -28,6 +28,7 @@
     background-color: #00000085;
     border-radius: 20px;
     display: flex;
+    flex-direction: column;
     height: 100%;
     justify-content: center;
     width: 100%;
@@ -38,8 +39,23 @@
     text-transform: capitalize;
   }
 
+  .job-title p {
+    font-size: 21px;
+  }
+
   .custom-btn {
     background-color: #0096b5 !important;
+  }
+
+  .additional {
+    border: 1px solid #777;
+    border-radius: 20px;
+    width: 100%;
+    padding: 4px 8px;
+  }
+
+  .additional-address {
+    padding: 2px;
   }
 </style>
 @endsection
@@ -55,9 +71,24 @@
     <div class="gambar mt-4">
       <div class="job-title">
         <h1>{{$jobs->title}}</h1>
+        <br>
+        <p class="lead text-white">{{ $jobs->company }}</p>
       </div>
     </div>
-    <img src="https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2021/05/26/2198019167.jpg" width="200px" height="200px" alt="...">
+
+    <div class="additional mt-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="additional-address">
+          <i class="fas fa-street-view"></i>
+          <span>{{ $jobs->address }}</span>
+        </div>
+        <div class="additional-address">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>{{ $jobs->kecamatan->nama_kecamatan }}</span>
+        </div>
+      </div>
+    </div>
+
     <div class="deskripsi mt-3">
       {!!$jobs->description!!}
     </div>
@@ -67,8 +98,8 @@
 @endsection
 
 @section('additional-script')
-    <script>
-      let getDataJob = async () => {
+<script>
+  let getDataJob = async () => {
         let url = window.location.href;
         let idJob = url.substring(url.lastIndexOf('/') + 1);
         let response = await fetch(`http://localhost:8000/api/job-detail/${idJob}`);
@@ -90,6 +121,6 @@
       getDataJob();
     
           
-      </script>
-      
+</script>
+
 @endsection

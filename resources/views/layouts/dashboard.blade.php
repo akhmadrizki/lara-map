@@ -97,8 +97,8 @@
             </a>
           </div>
           <ul class="sidebar-menu">
-            <li>
-              <a class="nav-link" href="#">
+            <li class="{{ Request::route()->getName() == 'index.wellcome' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('index.wellcome') }}">
                 <i class="fas fa-fire"></i>
                 <span>Dashboard</span>
               </a>
@@ -135,8 +135,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; {{ date('Y') }} <div class="bullet"></div> Primakara Booking Room | By <a href="#">Calon
-            Sarjana 🎓</a>
+          Copyright &copy; {{ date('Y') }} <div class="bullet"></div> Alihgae - Job GIS System
         </div>
         <div class="footer-right">
 
